@@ -46,27 +46,31 @@ const repositories = [
   },
   {
     key: "google/go-github",
-    value: "go-github"
+    value: "GO Github"
   },
   {
     key: "SebastianM/angular-google-maps",
-    value: "angular-google-maps"
+    value: "Google Maps"
   },
   {
     key: "facebook/react",
-    value: "react",
+    value: "React",
   },
   {
     key: "tensorflow/tensorflow",
-    value: "tensorflow"
+    value: "Tensorflow"
   },
   {
     key: "keras-team/keras",
-    value: "keras"
+    value: "Keras"
   },
   {
     key: "pallets/flask",
-    value: "flask"
+    value: "Flask"
+  },
+  {
+    key:"golang/go",
+    value: "Go"
   }
 ];
 
@@ -202,18 +206,25 @@ export default function Home() {
           <div>
             {/* Render barchart component for a monthly created issues for a selected repositories*/}
             <BarCharts
-              title={`Monthly Created Issues for ${repository.value} in last 1 year`}
+              title={`Monthly Created Issues for ${repository.value} in last 2 years`}
               data={githubRepoData?.created}
             />
+             {/* Render barchart component for stars for every repo*/}
+             <BarCharts
+              title={`Stars for every repo ${repository.value} in last 2 years`}
+              data={githubRepoData?.starCount}
+            />
+            <BarCharts
+              title={`Forks for every repo ${repository.value} in last 2 years`}
+              data={githubRepoData?.forkCount}
+            />
+            
             {/* Render barchart component for a monthly created issues for a selected repositories*/}
             <BarCharts
-              title={`Monthly Closed Issues for ${repository.value} in last 1 year`}
-              data={githubRepoData?.closed}
-            />
-             <BarCharts
               title={`Monthly Closed Issues for ${repository.value} in last 2 years`}
               data={githubRepoData?.closed}
             />
+        
             <Divider
               sx={{ borderBlockWidth: "3px", borderBlockColor: "#FFA500" }}
             />
