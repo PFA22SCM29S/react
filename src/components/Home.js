@@ -44,6 +44,30 @@ const repositories = [
     key: "d3/d3",
     value: "D3",
   },
+  {
+    key: "google/go-github",
+    value: "go-github"
+  },
+  {
+    key: "SebastianM/angular-google-maps",
+    value: "angular-google-maps"
+  },
+  {
+    key: "facebook/react",
+    value: "react",
+  },
+  {
+    key: "tensorflow/tensorflow",
+    value: "tensorflow"
+  },
+  {
+    key: "keras-team/keras",
+    value: "keras"
+  },
+  {
+    key: "pallets/flask",
+    value: "flask"
+  }
 ];
 
 export default function Home() {
@@ -184,6 +208,10 @@ export default function Home() {
             {/* Render barchart component for a monthly created issues for a selected repositories*/}
             <BarCharts
               title={`Monthly Closed Issues for ${repository.value} in last 1 year`}
+              data={githubRepoData?.closed}
+            />
+             <BarCharts
+              title={`Monthly Closed Issues for ${repository.value} in last 2 years`}
               data={githubRepoData?.closed}
             />
             <Divider
