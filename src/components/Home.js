@@ -22,8 +22,10 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 // Import custom components
 import BarCharts from "./BarCharts";
+import LineCharts from "./LineCharts";
 import Loader from "./Loader";
 import { ListItemButton } from "@mui/material";
+import StackBarCharts from "./StackBarCharts";
 
 const drawerWidth = 240;
 // List of GitHub repositories 
@@ -204,6 +206,11 @@ export default function Home() {
           <Loader />
         ) : (
           <div>
+            {/* Render linechart component for the issues for every Repo*/}
+            <LineCharts
+              title={`Created Issues for ${repository.value} in last 2 years`}
+              data={githubRepoData?.created}
+            />
             {/* Render barchart component for a monthly created issues for a selected repositories*/}
             <BarCharts
               title={`Monthly Created Issues for ${repository.value} in last 2 years`}
@@ -211,20 +218,24 @@ export default function Home() {
             />
              {/* Render barchart component for stars for every repo*/}
              <BarCharts
-              title={`Stars for every repo ${repository.value} in last 2 years`}
+              title={`Stars for every repo in last 2 years`}
               data={githubRepoData?.starCount}
             />
             <BarCharts
-              title={`Forks for every repo ${repository.value} in last 2 years`}
+              title={`Forks for every repo in last 2 years`}
               data={githubRepoData?.forkCount}
             />
             
-            {/* Render barchart component for a monthly created issues for a selected repositories*/}
+            {/* Render barchart component for a monthly closed issues for a selected repositories*/}
             <BarCharts
               title={`Monthly Closed Issues for ${repository.value} in last 2 years`}
               data={githubRepoData?.closed}
             />
-        
+            {/* Render StackedBarCharts component for the issues for every Repo*/}
+            <StackBarCharts
+              title={`Created and Closed Issues for every repo in last 2 years`}
+              data={githubRepoData?.created}
+            />        
             <Divider
               sx={{ borderBlockWidth: "3px", borderBlockColor: "#FFA500" }}
             />
