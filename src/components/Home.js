@@ -208,7 +208,7 @@ export default function Home() {
           <div>
             {/* Render linechart component for the issues for every Repo*/}
             <LineCharts
-              title={`Created Issues for ${repository.value} in last 2 years`}
+              title={`Line Chart for issues of ${repository.value} in last 2 years`}
               data={githubRepoData?.created}
             />
             {/* Render barchart component for a monthly created issues for a selected repositories*/}
@@ -218,27 +218,44 @@ export default function Home() {
             />
              {/* Render barchart component for stars for every repo*/}
              <BarCharts
-              title={`Stars for every repo in last 2 years`}
+              title={`Stars Count for ${repository.value} in last 2 years`}
               data={githubRepoData?.starCount}
             />
+             {/* Render barchart component for fork for every repo*/}
             <BarCharts
-              title={`Forks for every repo in last 2 years`}
+              title={`Forks Count for ${repository.value} in last 2 years`}
               data={githubRepoData?.forkCount}
             />
-            
-            {/* Render barchart component for a monthly closed issues for a selected repositories*/}
+
+            {/* Render barchart component for a weeklu closed issues for a selected repositories*/}
             <BarCharts
-              title={`Monthly Closed Issues for ${repository.value} in last 2 years`}
-              data={githubRepoData?.closed}
+              title={`Weekly Closed Issues for ${repository.value} in last 2 years`}
+              data={githubRepoData?.closed_week}
             />
+
             {/* Render StackedBarCharts component for the issues for every Repo*/}
             <StackBarCharts
-              title={`Created and Closed Issues for every repo in last 2 years`}
-              data={githubRepoData?.created}
-            />        
+              title={`Created and Closed Issues for ${repository.value} in last 2 years`}
+              data={githubRepoData?.stacked}
+            />      
+             
+            {/* Render barchart component for a monthly closed issues for a selected repositories*/}
+            {/* <BarCharts
+              title={`Monthly Closed Issues for ${repository.value} in last 2 years`}
+              data={githubRepoData?.closed}
+            /> */}
             <Divider
               sx={{ borderBlockWidth: "3px", borderBlockColor: "#FFA500" }}
             />
+
+            {/* Rendering general max days and month */}
+            <div>
+              <Typography variant="h5" component="div" gutterBottom>
+              1.The day of the week maximum number of issues created: {githubRepoData?.max_issue_created_day} <br></br>
+              2.The day of the week maximum number of issues closed: {githubRepoData?.max_issue_closed_day} <br></br>
+              3.The month of the year that has maximum number of issues closed: {githubRepoData?.max_issue_close_month} <br></br>
+              </Typography>
+            </div>
             {/* Rendering Timeseries Forecasting of Created Issues using Tensorflow and
                 Keras LSTM */}
             <div>
@@ -331,7 +348,248 @@ export default function Home() {
                   loading={"lazy"}
                 />
               </div>
+            </div> 
+
+            {/* Rendering Timeseries Forecasting of Pulls using Tensorflow and
+                Keras LSTM  */}
+            <div>
+              <Divider
+                sx={{ borderBlockWidth: "3px", borderBlockColor: "#FFA500" }}
+              />
+              <Typography variant="h5" component="div" gutterBottom>
+                Timeseries Forecasting of Pulls using Tensorflow and
+                Keras LSTM based on past month
+              </Typography>
+
+              <div>
+                <Typography component="h4">
+                  Model Loss for Pulls
+                </Typography>
+                {/* Render the model loss image for closed issues  */}
+                <img
+                  src={githubRepoData?.PullsImageUrls?.model_loss_image_url}
+                  alt={"Model Loss for Pulls"}
+                  loading={"lazy"}
+                />
+              </div>
+              <div>
+                <Typography component="h4">
+                  LSTM Generated Data for Pulls
+                </Typography>
+                {/* Render the LSTM generated image for closed issues */}
+                <img
+                  src={
+                    githubRepoData?.PullsImageUrls?.lstm_generated_image_url
+                  }
+                  alt={"LSTM Generated Data for Pulls"}
+                  loading={"lazy"}
+                />
+              </div>
+              <div>
+                <Typography component="h4">
+                  All Issues Data for Pulls
+                </Typography>
+                {/* Render the all issues data image for closed issues*/}
+                <img
+                  src={githubRepoData?.PullsImageUrls?.all_issues_data_image}
+                  alt={"All Issues Data for Pulls"}
+                  loading={"lazy"}
+                />
+              </div>
             </div>
+
+            {/* Rendering Timeseries Forecasting of Commits using Tensorflow and
+                Keras LSTM  */}
+            <div>
+              <Divider
+                sx={{ borderBlockWidth: "3px", borderBlockColor: "#FFA500" }}
+              />
+              <Typography variant="h5" component="div" gutterBottom>
+                Timeseries Forecasting of Commits using Tensorflow and
+                Keras LSTM based on past month
+              </Typography>
+
+              <div>
+                <Typography component="h4">
+                  Model Loss for Commits
+                </Typography>
+                {/* Render the model loss image for closed issues  */}
+                <img
+                  src={githubRepoData?.CommitsImageUrls?.model_loss_image_url}
+                  alt={"Model Loss for Commits"}
+                  loading={"lazy"}
+                />
+              </div>
+              <div>
+                <Typography component="h4">
+                  LSTM Generated Data for Pulls
+                </Typography>
+                {/* Render the LSTM generated image for closed issues */}
+                <img
+                  src={
+                    githubRepoData?.CommitsImageUrls?.lstm_generated_image_url
+                  }
+                  alt={"LSTM Generated Data for Pulls"}
+                  loading={"lazy"}
+                />
+              </div>
+              <div>
+                <Typography component="h4">
+                  All Issues Data for Commits
+                </Typography>
+                {/* Render the all issues data image for closed issues*/}
+                <img
+                  src={githubRepoData?.CommitsImageUrls?.all_issues_data_image}
+                  alt={"All Issues Data for Commits"}
+                  loading={"lazy"}
+                />
+              </div>
+            </div>
+
+            {/* Rendering Timeseries Forecasting of Branches using Tensorflow and
+                Keras LSTM  */}
+            <div>
+              <Divider
+                sx={{ borderBlockWidth: "3px", borderBlockColor: "#FFA500" }}
+              />
+              <Typography variant="h5" component="div" gutterBottom>
+                Timeseries Forecasting of Branches using Tensorflow and
+                Keras LSTM based on past month
+              </Typography>
+
+              <div>
+                <Typography component="h4">
+                  Model Loss for Branches
+                </Typography>
+                {/* Render the model loss image for closed issues  */}
+                <img
+                  src={githubRepoData?.BranchesImageUrls?.model_loss_image_url}
+                  alt={"Model Loss for Branches"}
+                  loading={"lazy"}
+                />
+              </div>
+              <div>
+                <Typography component="h4">
+                  LSTM Generated Data for Branches
+                </Typography>
+                {/* Render the LSTM generated image for closed issues */}
+                <img
+                  src={
+                    githubRepoData?.BranchesImageUrls?.lstm_generated_image_url
+                  }
+                  alt={"LSTM Generated Data for Branches"}
+                  loading={"lazy"}
+                />
+              </div>
+              <div>
+                <Typography component="h4">
+                  All Issues Data for Branches
+                </Typography>
+                {/* Render the all issues data image for closed issues*/}
+                <img
+                  src={githubRepoData?.BranchesImageUrls?.all_issues_data_image}
+                  alt={"All Issues Data for Branches"}
+                  loading={"lazy"}
+                />
+              </div>
+            </div>
+
+            {/* Rendering Timeseries Forecasting of Contributors using Tensorflow and
+                Keras LSTM  */}
+            <div>
+              <Divider
+                sx={{ borderBlockWidth: "3px", borderBlockColor: "#FFA500" }}
+              />
+              <Typography variant="h5" component="div" gutterBottom>
+                Timeseries Forecasting of Contributors using Tensorflow and
+                Keras LSTM based on past month
+              </Typography>
+
+              <div>
+                <Typography component="h4">
+                  Model Loss for Contributors
+                </Typography>
+                {/* Render the model loss image for closed issues  */}
+                <img
+                  src={githubRepoData?.ContributorsImageUrls?.model_loss_image_url}
+                  alt={"Model Loss for Contributors"}
+                  loading={"lazy"}
+                />
+              </div>
+              <div>
+                <Typography component="h4">
+                  LSTM Generated Data for Contributors
+                </Typography>
+                {/* Render the LSTM generated image for closed issues */}
+                <img
+                  src={
+                    githubRepoData?.ContributorsImageUrls?.lstm_generated_image_url
+                  }
+                  alt={"LSTM Generated Data for Contributors"}
+                  loading={"lazy"}
+                />
+              </div>
+              <div>
+                <Typography component="h4">
+                  All Issues Data for Contributors
+                </Typography>
+                {/* Render the all issues data image for closed issues*/}
+                <img
+                  src={githubRepoData?.ContributorsImageUrls?.all_issues_data_image}
+                  alt={"All Issues Data for Contributors"}
+                  loading={"lazy"}
+                />
+              </div>
+            </div>
+
+            {/* Rendering Timeseries Forecasting of Releases using Tensorflow and
+                Keras LSTM  */}
+            <div>
+              <Divider
+                sx={{ borderBlockWidth: "3px", borderBlockColor: "#FFA500" }}
+              />
+              <Typography variant="h5" component="div" gutterBottom>
+                Timeseries Forecasting of Releases using Tensorflow and
+                Keras LSTM based on past month
+              </Typography>
+
+              <div>
+                <Typography component="h4">
+                  Model Loss for Releases
+                </Typography>
+                {/* Render the model loss image for closed issues  */}
+                <img
+                  src={githubRepoData?.ReleasesImageUrls?.model_loss_image_url}
+                  alt={"Model Loss for Releases"}
+                  loading={"lazy"}
+                />
+              </div>
+              <div>
+                <Typography component="h4">
+                  LSTM Generated Data for Releases
+                </Typography>
+                {/* Render the LSTM generated image for closed issues */}
+                <img
+                  src={
+                    githubRepoData?.ReleasesImageUrls?.lstm_generated_image_url
+                  }
+                  alt={"LSTM Generated Data for Releases"}
+                  loading={"lazy"}
+                />
+              </div>
+              <div>
+                <Typography component="h4">
+                  All Issues Data for Releases
+                </Typography>
+                {/* Render the all issues data image for closed issues*/}
+                <img
+                  src={githubRepoData?.ReleasesImageUrls?.all_issues_data_image}
+                  alt={"All Issues Data for Releases"}
+                  loading={"lazy"}
+                />
+              </div>
+            </div>
+
           </div>
         )}
       </Box>

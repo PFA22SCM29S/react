@@ -30,12 +30,6 @@ const LineCharts = (props) => {
         color: '#808080'
      }]
     },
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        borderWidth: 0
-    },
     tooltip: {
       pointFormat: "Issues: <b>{point.y} </b>",
     },
@@ -46,7 +40,6 @@ const LineCharts = (props) => {
         dataLabels: {
           enabled: true,
           color: "#FFFFFF",
-          align: "right",
           format: "{point.y}", // one decimal
           y: 10, // 10 pixels down from the top
           style: {

@@ -7,7 +7,7 @@ import HighchartsReact from "highcharts-react-official";
 const StackBarCharts = (props) => {
   const config = {
     chart: {
-      type: "bar",
+      type: "column",
     },
     title: {
       text: props.title,
@@ -26,35 +26,44 @@ const StackBarCharts = (props) => {
       title: {
         text: "Issues",
       }
-    },
+    ,
+    stackLabels: {
+      enabled: true,
+      style: {
+        fontWeight: 'bold',
+        color: ( // theme
+          Highcharts.defaultOptions.title.style &&
+          Highcharts.defaultOptions.title.style.color
+        ) || 'gray',
+        textOutline: 'none'
+      }
+    }
+  }
+    ,
     legend: {
-      reversed: true
+      align: 'left',
+      x: 70,
+      verticalAlign: 'top',
+      y: 70,
+      floating: true,
+      backgroundColor:
+        Highcharts.defaultOptions.legend.backgroundColor || 'white',
+      borderColor: '#CCC',
+      borderWidth: 1,
+      shadow: false
     },
     plotOptions: {
-      series: {
-          stacking: 'normal'
+      column: {
+        stacking: 'normal',
+        dataLabels: {
+          enabled: true
+        }
       }
-  },
+    },
     tooltip: {
       pointFormat: "Issues: <b>{point.y} </b>",
     },
-    series: [
-      {
-        name: props.title,
-        data: props.data,
-        dataLabels: {
-          enabled: true,
-          color: "#FFFFFF",
-          align: "right",
-          format: "{point.y}", // one decimal
-          y: 10, // 10 pixels down from the top
-          style: {
-            fontSize: "13px",
-            fontFamily: "Verdana, sans-serif",
-          },
-        },
-      },
-    ],
+    series: props.data,
   };
   return (
     <div>
